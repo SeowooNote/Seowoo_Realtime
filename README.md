@@ -3,6 +3,7 @@
 npm i -g @nestjs/cli
 
 nest-back
+
 nest new realtime-nest-back
 
 	npm i @nestjs/websockets @nestjs/platform-socket.io
@@ -18,6 +19,7 @@ nest new realtime-nest-back
 	npm run start:dev
 
 front
+
 npm i axios sockjs-client @stomp/stompjs
 
 npm i socket.io-client
