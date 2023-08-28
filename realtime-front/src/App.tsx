@@ -1,39 +1,23 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import { usePathStore } from './stores';
+import Main from './views/Main';
+import Enter from './views/Enter'
 
-import { socket } from './utils/socket';
-
+// component : Root 컴포넌트 //
 function App() {
 
-  const [message, setMessage] = useState<string>('');
-  const [isConnected, setIsConnected] = useState<boolean>(socket.connected);
-
-  const onEmitButtonHandler = () => {
-    socket.emit('send', message);
-  }
-
-  let flag = true;
-  useEffect(() => {
-    if(flag) {
-      flag = false;
-      return;
-    }
-    const onConnected = () => {
-      console.log(socket.id);
-      setIsConnected(true);
-    };
-
-    const onDisconnect = () => {
-      setIsConnected(false);
-    };
-    socket.on('connect', onConnected);
-    socket.on('receive', message => console.log(message));
-  })
+  // state : Path 전역 상태 //
+  const { path } = usePathStore();
 
   return (
     <>
-      <input onChange={(event) => setMessage(event.target.value)} />
-      <button onClick={onEmitButtonHandler}>send</button>
+      {
+        path === '/' ? (<Main />) :
+        path === '/enter' ? (<Enter />) :
+        path === '/room' ? (<></>) :
+        (<></>)
+      }
     </>
   );
 }
