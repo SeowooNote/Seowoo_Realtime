@@ -1,9 +1,10 @@
-import React, { ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 import './style.css';
 import { usePathStore, useUserStore } from '../../stores';
 
 // component: Main 화면 컴포넌트 //
 export default function Main() {
+     
      // state: 닉네임 상태 및 닉네임 상태 변경 함수 //
      const { nickname, setNickname } = useUserStore();
      // state: Path 상태 변경 함수 //
